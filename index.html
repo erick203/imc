@@ -1,33 +1,33 @@
-<DOCTYPE html>
-</html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>IFRJ - Curso de Informática para Internet</title>
-  </head>
-  <body>
-
-    <h3>Disciplina de Modelagem de Domínio e Conceitos de Orientação a Objetos</h3>
-    <h4>Aula 01 Atividade Prática</h4>
-
-    <form>
-      <label for="nome">Nome:</label>
-      ,input type="text"name"=nome" maxlength="500"><br>
-      <label for="nasc">Data de Nascimento:</label>
-        <input type="password" nome="nasc"><br>
-      <label for="sexo">Sexo:</label>
-      <input tupe="checkbox" nome="sexo1" value="Feminino">
-      <label for="vehicle1> Feminino</label>
-       <input type="chackbox" name="sexo2" valeu="Masculino">
-      <label for="vehicle1">masculino</label>label><br>
-        <label for="email">E-mail:</label>
-        <input type='date" name="email"><br>
-          <label for="tel">Telfone:</label>
-          <input type="email" name="tel"><br><br>
-          <input type=reset" value"Limpar">
-          <input type="submit" value="Enviar">
-          </form>
-
-          <p>Clique no botão "enviar"</p>
-
-          </body>
-          ,/html
+function imc(){
+    const formulario = document.getElementsByName("formulario")[0]
+    const formDados = new FormData(formulario)
+    const paciente = {
+        nome:formDados.get("nome"),
+        email:formDados.get("email"),
+        dataNasc:formDados.get("nasc"),
+        telefone:formDados.get("tel"),
+        sexo:document.querySelector('input[name=sexo]:checked').value,
+        peso:formDados.get("peso"),
+        altura:formDados.get("altura"),
+        classificacao:"",
+        calcularIMC(){
+            if (this.altura > 3) this.altura=this.altura/100
+            const imc = this.peso/this.altura**2;
+            if (imc < 18.5 ) this.classificacao = "obesidade mÃ³rbida";
+            if (imc >= 18.5 &&  imc < 25 ) this.classificacao = "saudÃ¡vel"
+            if (imc >= 25 &&  imc < 30 ) this.classificacao = "sobrepeso"
+            if (imc >= 30 &&  imc < 35 ) this.classificacao = "obesidade"
+            if (imc >= 35 &&  imc < 40 ) this.classificacao = "obesidade Severa"
+            if (imc >= 40 ) this.classificacao = "magreza"
+            return imc.toFixed(2);
+        
+            
+            
+        },
+        
+    }
+    console.log(paciente)
+    console.log(paciente.calcularIMC())
+    let resposta=document.getElementById('resposta');
+    resposta.innerHTML="Seu IMC Ã© "+paciente.calcularIMC()+". " + "Sua classificaÃ§Ã£o de peso Ã© " + paciente.classificacao;
+}
